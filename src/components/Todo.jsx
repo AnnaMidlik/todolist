@@ -1,32 +1,51 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { Context } from '../context';
 import '../css/Todo.css'
 // import TextareaAutosize from 'react-textarea-autosize'
 import EditingForm from './EditingForm'
 
 export default function Todo({ id, todo, checked }) {
   const [editing, setEditing] = useState(false)
+  const { dispatch } = useContext(Context)
 
   const makeTodo = () => {
-    let todoComponent = (
-      <div className='Todo'>
-        < label className={`Todo-checkbox ${checked ? 'checked' : ''} `}>
-          <input
-            type='checkbox'
-            id='todo'
-            checked={checked}
-          />
-          {todo}
-        </label>
-        <div className='Todo-btns'>
-          <button id='edit' onClick={() => setEditing(true)} >
-            <i className="fas fa-pen light" />
-          </button>
-          <button>
-            <i className="fas fa-trash light" />
-          </button>
+    let todoComponent
+    if (editing) {
+      todoComponent = (
+        <EditingForm
+          id={id}
+          task={todo}
+          setEditing={setEditing} />
+      )
+    } else {
+      todoComponent = (
+        <div className='Todo'>
+          < label className={`Todo-checkbox ${checked ? 'checked' : ''} `}>
+            <input
+              type='checkbox'
+              id='todo'
+              checked={checked}
+              onChange={() => dispatch({
+                type: 'toggle',
+                id: id
+              })}
+            />
+            {todo}
+          </label>
+          <div className='Todo-btns'>
+            <button id='edit' onClick={() => setEditing(true)} >
+              <i className="fas fa-pen light" />
+            </button>
+            <button onClick={() => dispatch({
+              type: 'remove',
+              id: id
+            })}>
+              <i className="fas fa-trash light" />
+            </button>
+          </div>
         </div>
-      </div>
-    )
+      )
+    }
     return todoComponent
   }
   return (

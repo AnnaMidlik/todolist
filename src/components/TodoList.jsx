@@ -1,19 +1,41 @@
 // import React, { Component } from 'react';
-import React from 'react'
+import React, { useEffect, useReducer } from 'react'
 import NewTodoForm from './NewTodoForm';
+import Todo from './Todo';
 import '../css/TodoList.css'
-
+import { Context } from '../context'
+import reducer from '../reducer';
 
 
 export default function TodoList() {
+  const [state, dispatch] = useReducer(reducer, JSON.parse(localStorage.getItem('todos')) || [])
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(state));
+  }, [state])
+
+  const showTodos = () => {
+    if (state) {
+      return (state.map(todo => (
+        <Todo
+          key={todo.id}
+          id={todo.id}
+          todo={todo.task}
+          checked={todo.checked} />
+      )))
+    }
+  }
   return (
-    <div className='TodoList'>
-      <h1>TODO</h1>
-      <NewTodoForm />
-      <div>
-        <ul></ul>
+    <Context.Provider value={
+      { dispatch }
+    }>
+      <div className='TodoList'>
+        <h1>TODO</h1>
+        <NewTodoForm />
+        <div>
+          <ul>{showTodos()}</ul>
+        </div>
       </div>
-    </div>
+    </Context.Provider>
   )
 }
 

@@ -1,8 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { Context } from '../context';
 import '../css/NewTodoForm.css'
 
 export default function NewTodoForm() {
   const [task, setTask] = useState('')
+  const { dispatch } = useContext(Context)
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (task !== '') {
+      dispatch({
+        type: 'create',
+        task: task
+      })
+      setTask('')
+    }
+  }
   return (
     <form onSubmit={handleSubmit} className='NewTodoForm'>
       <button>+</button>
