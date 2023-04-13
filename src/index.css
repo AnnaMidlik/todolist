@@ -1,0 +1,8 @@
+body {
+  min-height: 100vh;
+  font-family: 'Josefin Sans', sans-serif;
+  background: #161722 url(https://images.unsplash.com/photo-1604737771065-7ce2dc4ba3e8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1654&q=80) no-repeat 0% 0% / 100vw 20rem;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+}
