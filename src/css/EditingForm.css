@@ -1,0 +1,27 @@
+.Todo-edit-form textarea {
+  width: 90%;
+  background-color: rgba(166, 171, 216, 0);
+  border: 0;
+  color: #a6abd8;
+  font-size: 1rem;
+}
+
+.Todo-edit-form textarea:focus {
+  outline: 0;
+}
+
+.Todo-edit-form button {
+  text-align: center;
+  border-radius: 10px;
+  border: solid 1px #a6abd8;
+  background-color: rgba(166, 171, 216, 0);
+  color: #a6abd8;
+  font-size: 1rem;
+  width: auto;
+  height: 1.45em;
+}
+
+.Todo-edit-form button:hover {
+  color: #fff;
+  border: solid 1px #fff;
+}
