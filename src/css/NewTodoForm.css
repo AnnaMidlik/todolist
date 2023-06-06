@@ -8,7 +8,7 @@
 }
 
 .NewTodoForm button {
-  padding: 1px 6px;
+  padding: 0px 6px;
   border-radius: 50%;
   border: solid 1px #a6abd8;
   background-color: rgba(166, 171, 216, 0);
